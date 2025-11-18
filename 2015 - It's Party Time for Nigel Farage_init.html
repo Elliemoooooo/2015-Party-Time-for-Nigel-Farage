@@ -3,7 +3,7 @@ campaignTrail_temp.election_json = [
         "model": "campaign_trail.election",
         "pk": 20,
         "fields": {
-            "year": 2016,
+            "year": 2015 | Party Time for Nigel Farage,
             "display_year": "2015",
             "summary": "You turn on the television. You find yourself tuned into Sky News as they say 'It's Party Time for \nNigel Farage'. Will It be from this election? <p>You'll find out.",
             "image_url": "https://file.garden/Z5ZdT2XMBSWGuJym/Election%20image",
@@ -163,5 +163,159 @@ document.getElementById("header").src = "https://file.garden/Z5ZdT2XMBSWGuJym/NC
 document.body.background = "https://file.garden/Z5ZdT2XMBSWGuJym/background1";
 
 document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#ffffff!important;}</style>";
+
+// Music Player
+
+  // Select the node that will be observed for mutations
+  const windowsAdvisorTargetNode = document.getElementById("game_window");
+  
+  // Options for the observer (which mutations to observe)
+  const windowsAdvisorConfig = { attributes: true, childList: true, subtree: true };
+  
+  // Callback function to execute when mutations are observed
+  const callback = (mutationList, observer) => {
+      visitWindow = document.getElementsByClassName("overlay_window")[0];
+  
+      if(visitWindow == null || visitWindow.classList.contains("done")) {
+          return;
+      }
+      visitWindow.classList.add("done");
+      visitWindow.classList.add("window");
+      let titleBar = visitWindow.querySelector("h3");
+      titleBar.classList.add("title-bar");
+      titleBar.classList.add("title-bar-text")
+      titleBar.style.paddingLeft = "3px";
+  };
+  
+  class Song {
+    constructor(title, artist, coverLink, audioLink) {
+      this.title = title;
+      this.artist = artist;
+      this.coverLink = coverLink;
+      this.audioLink = audioLink;
+    }
+    getTitle() {
+      return this.title;
+    }
+  
+    getArtist() {
+      return this.artist;
+    }
+  
+    getCoverLink() {
+      return this.coverLink;
+    }
+  
+    getAudioLink() {
+      return this.audioLink;
+    }
+  }
+  
+  class Playlist {
+    constructor() {
+      this.songs = [];
+      this.currentSongIndex = 0;
+    }
+  
+    addSong(song) {
+      this.songs.push(song);
+    }
+  
+    getCurrentSong() {
+      return this.songs[this.currentSongIndex];
+    }
+  
+    playNext() {
+      this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+    }
+  
+    playPrevious() {
+      this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+    }
+  }
+  window.Playlist=Playlist
+  window.Song=Song
+  
+  function changePlaylist(newPlaylist) {
+    playlist = newPlaylist;
+    playlist.currentSongIndex = 0;
+    updateUI(playlist);
+    const audio = document.getElementById("audio");
+    audio.src = playlist.getCurrentSong().audioLink;
+    audio.play();
+  }
+  window.changePlaylist=changePlaylist
+  
+  function updateUI(playlist) {
+      const currentSong = playlist.getCurrentSong();
+      var player = document.getElementById("player");
+      player.querySelector("#cover").src = currentSong.getCoverLink();
+      player.querySelector("#title").textContent = currentSong.getTitle();
+      player.querySelector("#artist").textContent = currentSong.getArtist();
+  }
+  
+  window.updateUI=updateUI
+  
+  
+  function setupMusicPlayer() {
+    playlist = new Playlist();
+  
+  
+    const song1 = new Song(
+      "H3@RT$ W3RE M3@NT T0 F7¥",
+      "Childish Gambino",
+      "https://itsastronomical.com/assets/2024/bando.gif",
+      "https://audio.jukehost.co.uk/jmCjbw5M8QjWqSwgJ5d22uqs4v37Oxjw"
+    );
+    
+    const song2 = new Song(
+      "The American Dream Is Killing Me",
+      "Green Day",
+      "https://upload.wikimedia.org/wikipedia/en/c/c9/Green_Day_-_Saviors.png",
+      "https://audio.jukehost.co.uk/xVflzX2agfU70s5rmti5BfQncpqLOCjw"
+    );
+  
+    const song3 = new Song(
+      "Welcome To Hell",
+      "Black Midi",
+      "https://upload.wikimedia.org/wikipedia/en/1/12/Black_Midi_-_Hellfire.png",      
+      "https://audio.jukehost.co.uk/UIHdUryJ1XMkYpDsi6uTs9av0NwAy3dX"
+    );
+  
+    const song4 = new Song(
+      "Count Me Out",
+      "Kendrick Lamar",
+      "https://upload.wikimedia.org/wikipedia/en/e/e1/Kendrick_Lamar_-_Mr._Morale_%26_the_Big_Steppers.png",
+      "https://audio.jukehost.co.uk/9aHPvYov0d70Tygk768fOEXdSMTgH85v"
+    );
+
+    const song5 = new Song(
+      "Crown",
+      "Kendrick Lamar",
+      "https://upload.wikimedia.org/wikipedia/en/e/e1/Kendrick_Lamar_-_Mr._Morale_%26_the_Big_Steppers.png",
+      "https://audio.jukehost.co.uk/8rh9H6Wg4iguglk0ByZC04nnKKwvC8BV"
+    );
+
+    const song6 = new Song(
+      "São Paulo",
+      "The Weeknd, Anitta",
+      "https://upload.wikimedia.org/wikipedia/en/7/72/The_Weeknd_and_Anitta_-_S%C3%A3o_Paulo.png",
+      "https://audio.jukehost.co.uk/vTA6uZ2eCK9uEB5HLUBzLICYLz3sDKPJ"
+    );
+
+    const song7 = new Song(
+      "Blind",
+      "SZA",
+      "https://upload.wikimedia.org/wikipedia/en/2/2c/SZA_-_S.O.S.png",
+      "https://audio.jukehost.co.uk/wDaCOSFko1S0NGERvwgKOIPWuShRNeOf"
+    );
+
+    const song8 = new Song(
+      "Am I Dreaming",
+      "Metro Boomin, A$AP Rocky, Roisee",
+      "https://upload.wikimedia.org/wikipedia/en/4/4c/Metro_Boomin_-_Metro_Boomin_Presents_Spider-Man-_Across_the_Spider-Verse_%28Soundtrack_from_and_Inspired_by_the_Motion_Picture%29.png",
+      "https://audio.jukehost.co.uk/r0DIM2bECFl54DXy57eOhsWsyEJSLLuy"
+    );
+
 
 //#endcode
