@@ -1,296 +1,3 @@
-function addDynamicCSS() {
-	var css = `
-		#final_results_description h3 {
-			color: white;
-		}
-		#overall_details_container h3 {
-			color: white;
-		}
-		#overall_election_details h4 {
-			color: white;
-		}
-		#main_content_area_reading p {
-			color: white;
-		}
-		#main_content_area_reading h3.results_tab_header {
-			color: white;
-		}
-		.inner_window_w_desc h3 {
-			color: white;
-		}
-	p#credits {
-		color: white;
-	}
-	#final_results_description p {
-		color: white;
-	}
-
-	`;
-	var styleElem = document.createElement('style');
-	styleElem.type = 'text/css';
-
-	styleElem.appendChild(document.createTextNode(css));
-
-	document.head.appendChild(styleElem);
-}
-
-addDynamicCSS();
-
-(() => {
-  const css = `
-button, input[type="button"], input[type="submit"] {
-  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  font-size: 0.95em;
-  font-weight: 600;
-  padding: 7px 16px;
-  border-radius: 3px;
-  border: 1px solid rgba(40,40,40,0.6);
-  background: linear-gradient(to top, #111 0%, #3a3a3a 100%);
-  color: #d0d0d0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
-  cursor: pointer;
-  transition: background 0.8s ease, box-shadow 0.8s ease, 
-              color 0.8s ease, opacity 0.8s ease, transform 0.25s ease, filter 0.8s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-  filter: brightness(1.05);
-  background: linear-gradient(to top, #181818 0%, #424242 100%);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06);
-}
-
-button:active, input[type="button"]:active, input[type="submit"]:active {
-  background: linear-gradient(to top, #0e0e0e 0%, #2d2d2d 100%);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
-  transform: scale(0.985);
-  filter: brightness(1.02);
-}
-
-button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transition: opacity 0.6s ease;
-}
-
-select {
-  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  font-size: 0.95em;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 3px;
-  border: 1px solid rgba(40,40,40,0.6);
-  background: linear-gradient(to top, #111 0%, #3a3a3a 100%);
-  color: #d0d0d0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
-  cursor: pointer;
-  appearance: none;
-  transition: background 0.8s ease, color 0.8s ease, 
-              box-shadow 0.8s ease, opacity 0.8s ease, filter 0.8s ease, transform 0.25s ease;
-}
-
-select option {
-  color: #d0d0d0;
-  background: #2a2a2a;
-}
-
-select:hover { filter: brightness(1.05); }
-select:active { filter: brightness(1.02); transform: scale(0.995); }
-select:disabled { opacity: 0.4; cursor: not-allowed; }
-
-::-webkit-scrollbar { width: 9px; height: 9px; }
-::-webkit-scrollbar-track { background: #111; border-radius: 3px; }
-::-webkit-scrollbar-thumb {
-  background: #3a3a3a;
-  border-radius: 3px;
-  border: 2px solid #111;
-  transition: background 0.6s ease;
-}
-::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
-
-input[type="radio"] {
-  accent-color: #555;
-}
-
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 150px;
-  height: 6px;
-  border-radius: 3px;
-  background: #222;
-  outline: none;
-  cursor: pointer;
-  transition: background 0.6s ease;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  background: #555;
-  border: 1px solid #333;
-  cursor: pointer;
-  transition: background 0.6s ease, border 0.6s ease, transform 0.25s ease;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.7);
-}
-
-input[type="range"]:hover::-webkit-slider-thumb { background: #666; transform: scale(1.03); }
-
-input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  background: #555;
-  border: 1px solid #333;
-  cursor: pointer;
-  transition: background 0.6s ease, border 0.6s ease, transform 0.25s ease;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.7);
-}
-
-input[type="range"]:hover::-moz-range-thumb { background: #666; transform: scale(1.03); }
-
-table {
-  width: 90%;
-  max-width: 700px;
-  margin: 15px auto;
-  border-collapse: collapse;
-  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  font-size: 0.9em;
-  color: #d0d0d0;
-  background: linear-gradient(to top, #111 0%, #3a3a3a 100%);
-  border: 1px solid rgba(40,40,40,0.6);
-  border-radius: 3px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
-  transition: background 0.8s ease, box-shadow 0.8s ease;
-}
-
-th, td {
-  padding: 6px 12px;
-  text-align: left;
-  color: #d0d0d0 !important;
-  background: #222;
-  border-bottom: 1px solid rgba(40,40,40,0.5);
-  transition: background 0.6s ease;
-}
-
-th {
-  background: #2c2c2c;
-  font-weight: 700;
-}
-
-tr:hover {
-  background: #1a1a1a;
-  transition: background 0.6s ease;
-}
-
-tr:nth-child(even) td {
-  background: #191919;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-`;
-
-  const id = 'industrial-buttons-dark-ny-fade';
-  if (!document.getElementById(id)) {
-    const style = document.createElement('style');
-    style.id = id;
-    style.textContent = css;
-    document.head.appendChild(style);
-  }
-})();
-
-let style = document.createElement('style');
-style.type = 'text/css';
-style.id = 'dynamic-style';
-
-style.innerHTML = `
-  .campaign_trail_start_emphasis {
-    background: linear-gradient(to top, #111 0%, #3a3a3a 100%) !important;
-  }
-
-  a:-webkit-any-link {
-    color: #4a90e2;
-  }
-
-  .inner_window_question h3 {
-    background: linear-gradient(to top, #111 0%, #3a3a3a 100%) !important;
-    color: #d0d0d0 !important;
-  }
-
-  .overlay_window h3 {
-    background: linear-gradient(to top, #111 0%, #3a3a3a 100%) !important;
-    color: #ffffff !important;
-  }
-
-  #map_container {
-    background: linear-gradient(to top, #ffffff 0%, #f0eafc 100%) !important;
-    background-size: 150% 150%;
-    border-radius: 0.75px;
-    color: #000 !important;
-  }
-
-  .game_header h2 {
-    color: #FFF;
-  }
-`;
-
-document.head.appendChild(style);
-
-document.head.innerHTML += `
-<style>
-  @keyframes fadeInScale {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .overlay_window {
-    animation: fadeInScale 0.3s cubic-bezier(0.3, 1.2, 0.2, 1) forwards, gradientShift 30s ease infinite;
-    opacity: 0;
-    background: linear-gradient(135deg, #1a1a1a, #2b2b2b, #3c3c3c);
-    background-size: 300% 300%;
-    border-radius: 0.5rem;
-    box-shadow:
-      0 0 1.2em rgba(40, 40, 40, 0.5),
-      0 0 2em rgba(40, 40, 40, 0.3);
-    display: flex;
-    flex-flow: column;
-    color: #f0f0f0;
-    padding: 1.2em;
-  }
-
-  .overlay_window h3 {
-    margin: 0;
-    padding: 0.5em 1em;
-    font-size: 1.3em;
-    background: linear-gradient(135deg, #1a1a1a, #2b2b2b, #3c3c3c);
-    border-radius: 0.5rem 0.5rem 0 0;
-    color: #f0f0f0;
-  }
-
-  .overlay_window p {
-    margin: 0.5em 0 0 0;
-  }
-</style>
-`;
-
 campaignTrail_temp.election_json = [
     {
         "model": "campaign_trail.election",
@@ -458,3 +165,405 @@ document.body.background = "https://file.garden/Z5ZdT2XMBSWGuJym/background1";
 document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#ffffff!important;}</style>";
 
 //#endcode
+
+// Music Player
+// Select the node that will be observed for mutations
+const windowsAdvisorTargetNode = document.getElementById("game_window");
+
+// Options for the observer (which mutations to observe)
+const windowsAdvisorConfig = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+const callback = (mutationList, observer) => {
+    visitWindow = document.getElementsByClassName("overlay_window")[0];
+
+    if(visitWindow == null || visitWindow.classList.contains("done")) {
+        return;
+    }
+    visitWindow.classList.add("done");
+    visitWindow.classList.add("window");
+    let titleBar = visitWindow.querySelector("h3");
+    titleBar.classList.add("title-bar");
+    titleBar.classList.add("title-bar-text")
+    titleBar.style.paddingLeft = "3px";
+};
+
+class Song {
+  constructor(title, artist, coverLink, audioLink) {
+    this.title = title;
+    this.artist = artist;
+    this.coverLink = coverLink;
+    this.audioLink = audioLink;
+  }
+  getTitle() {
+    return this.title;
+  }
+
+  getArtist() {
+    return this.artist;
+  }
+
+  getCoverLink() {
+    return this.coverLink;
+  }
+
+  getAudioLink() {
+    return this.audioLink;
+  }
+}
+
+class Playlist {
+  constructor() {
+    this.songs = [];
+    this.currentSongIndex = 0;
+  }
+
+  addSong(song) {
+    this.songs.push(song);
+  }
+
+  getCurrentSong() {
+    return this.songs[this.currentSongIndex];
+  }
+
+  playNext() {
+    this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+  }
+
+  playPrevious() {
+    this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+  }
+}
+window.Playlist=Playlist
+window.Song=Song
+
+function changePlaylist(newPlaylist) {
+  playlist = newPlaylist;
+  playlist.currentSongIndex = 0;
+  updateUI(playlist);
+  const audio = document.getElementById("audio");
+  audio.src = playlist.getCurrentSong().audioLink;
+  audio.play();
+}
+window.changePlaylist=changePlaylist
+
+function updateUI(playlist) {
+    const currentSong = playlist.getCurrentSong();
+    var player = document.getElementById("player");
+    player.querySelector("#cover").src = currentSong.getCoverLink();
+    player.querySelector("#title").textContent = currentSong.getTitle();
+    player.querySelector("#artist").textContent = currentSong.getArtist();
+}
+
+window.updateUI=updateUI
+
+
+function setupMusicPlayer() {
+  playlist = new Playlist();
+
+  const song1 = new Song(
+    "Born In The U.S.A",
+    "Bruce Springsteen",
+    "https://i.imgur.com/xTyz859.png",
+    "https://audio.jukehost.co.uk/y8UAbY6RebjqpgtxRtOJZxrVPVRB0eND"
+  );
+
+  const song2 = new Song(
+    "You've Got To Stand For Something",
+    "Aaron Tippin",
+    "https://i.imgur.com/O7c1hor.png",
+    "https://audio.jukehost.co.uk/ZQnMufZGNbmyEQUhR6dLQx8ozFYmmNDD"
+  );
+  
+  const song3 = new Song(
+    "God Bless the U.S.A",
+    "Lee Greenwood",
+    "https://i.imgur.com/elUafEV.png",
+    "https://audio.jukehost.co.uk/A7K1Ha1w2kmRXPz8qC3DcNrQWxQTPTRs"
+  );
+
+  const song4 = new Song(
+    "American Ride",
+    "Toby Keith",
+    "https://i.imgur.com/8J1LKFA.png",
+    "https://audio.jukehost.co.uk/2cvWGDd0rvlDnZWEnw8OKrlk4EQHzOiy"
+  );
+
+  const song5 = new Song(
+    "As Good As I Once Was",
+    "Toby Keith",
+    "https://i.imgur.com/F7gd9Mv.jpeg",
+    "https://audio.jukehost.co.uk/tCO8u2zmunpUWoSfiLStFLdrFi9VTvf9"
+  );
+
+  const song6 = new Song(
+    "Rockin' In The Free World",
+    "Neil Young",
+    "https://i.imgur.com/rsjTJWY.png",
+    "https://audio.jukehost.co.uk/EszA1MFZjpHCByR2r4t6zuQOUNqV6Ck5"
+  );
+
+  playlist.addSong(song1);
+  playlist.addSong(song2);
+  playlist.addSong(song3);
+  playlist.addSong(song4);
+  playlist.addSong(song5);
+  playlist.addSong(song6);
+
+
+  const playerContainer = document.createElement("div");
+  playerContainer.id = "player";
+
+  const displayBox = document.createElement("div");
+  displayBox.id = "display-box";
+
+  const coverElement = document.createElement("img");
+  coverElement.id = "cover";
+  displayBox.appendChild(coverElement);
+
+  const infoContainer = document.createElement("div");
+  infoContainer.id = "info-container";
+  infoContainer.style.backgroundImage = "url('https://i.imgur.com/pQXnzV6.png')";
+  infoContainer.style.backgroundSize = "cover";
+  infoContainer.style.color = "white";
+
+  const songInfo = document.createElement("div");
+  songInfo.id = "song-info";
+
+  const titleElement = document.createElement("h3");
+  titleElement.id = "title";
+  titleElement.style.fontWeight = 'large';
+  songInfo.appendChild(titleElement);
+
+  const artistElement = document.createElement("p");
+  artistElement.id = "artist";
+  songInfo.appendChild(artistElement);
+
+  infoContainer.appendChild(songInfo);
+  displayBox.appendChild(infoContainer);
+
+  playerContainer.appendChild(displayBox);
+
+  const controlsContainer = document.createElement("div");
+  controlsContainer.id = "controls-container";
+
+  const controls = document.createElement("div");
+  controls.id = "controls";
+
+  const prevButton = document.createElement("img");
+  prevButton.id = "prevButton";
+  prevButton.src = "https://i.imgur.com/imIqTEA.png";
+  prevButton.alt = "Previous";
+  controls.appendChild(prevButton);
+
+  const playPauseButton = document.createElement("img");
+  playPauseButton.id = "playPauseButton";
+  playPauseButton.src = "https://i.imgur.com/oQbfTxw.png";
+  playPauseButton.alt = "Play/Pause";
+  controls.appendChild(playPauseButton);
+
+  const nextButton = document.createElement("img");
+  nextButton.id = "nextButton";
+  nextButton.src = "https://i.imgur.com/7TtaN04.png";
+  nextButton.alt = "Next";
+  controls.appendChild(nextButton);
+
+  controlsContainer.appendChild(controls);
+
+  playPauseButton.addEventListener("click", function () {
+    const audio = document.getElementById("audio");
+    if (audio.paused) {
+      audio.play();
+      playPauseButton.src = "https://i.imgur.com/ttdoyfG.png"; // pause icon
+    } else {
+      audio.pause();
+      playPauseButton.src = "https://i.imgur.com/oQbfTxw.png"; // play icon
+    }
+  });
+
+  nextButton.addEventListener("click", function () {
+    playlist.playNext();
+    updateUI(playlist);
+    const audio = document.getElementById("audio");
+    audio.src = playlist.getCurrentSong().audioLink;
+    audio.play();
+  });
+
+  prevButton.addEventListener("click", function () {
+    playlist.playPrevious();
+    updateUI(playlist);
+    const audio = document.getElementById("audio");
+    audio.src = playlist.getCurrentSong().audioLink;
+    audio.play();
+  });
+
+  const progressBarContainer = document.createElement("div");
+  progressBarContainer.id = "progress-bar-container";
+
+  const progressBar = document.createElement("input");
+  progressBar.type = "range";
+  progressBar.id = "progress-bar";
+  progressBar.value = "0";
+  progressBar.max = "100";
+
+  progressBarContainer.appendChild(progressBar);
+  controlsContainer.appendChild(progressBarContainer);
+  playerContainer.appendChild(controlsContainer);
+
+  const volumeContainer = document.createElement("div");
+  volumeContainer.id = "volume-container";
+
+  const volumeLabel = document.createElement("img");
+  volumeLabel.src = "https://i.imgur.com/0BJYsXt.png";
+  volumeLabel.alt = "Volume";
+  volumeContainer.appendChild(volumeLabel);
+
+  const volumeSliderContainer = document.createElement("div");
+  volumeSliderContainer.classList.add("is-vertical");
+  volumeSliderContainer.style.marginLeft = "23%";
+  volumeSliderContainer.style.height = "126px";
+
+  const volumeSlider = document.createElement("input");
+  volumeSlider.type = "range";
+  volumeSlider.id = "volumeSlider";
+  volumeSlider.min = 0;
+  volumeSlider.max = 9;
+  volumeSlider.step = 1;
+  volumeSlider.value = 9;
+
+  volumeSliderContainer.appendChild(volumeSlider);
+
+  const volumeDisplay = document.createElement("span");
+  volumeDisplay.id = "volume-display";
+  volumeDisplay.style.fontWeight = 'bold'; 
+  volumeDisplay.style.display = 'none';
+  volumeDisplay.textContent = "1";
+
+  volumeContainer.appendChild(volumeSliderContainer);
+  volumeContainer.appendChild(volumeDisplay);
+
+  playerContainer.appendChild(volumeContainer);
+
+  gameWindow_player.insertAdjacentElement("afterend", playerContainer);
+
+  function updateProgressBar() {
+    const audio = document.getElementById("audio");
+    const progress = (audio.currentTime / audio.duration) * 100;
+    try{progressBar.value = progress}
+    catch{}
+  }
+
+  progressBar.addEventListener("input", function () {
+    const audio = document.getElementById("audio");
+    const seekTime = (progressBar.value / 100) * audio.duration;
+    audio.currentTime = seekTime;
+  });
+
+  const audio = document.createElement("audio");
+  audio.id = "audio";
+  audio.src = playlist.getCurrentSong().audioLink;
+  audio.volume = 9/9;
+
+  audio.addEventListener("timeupdate", updateProgressBar);
+  audio.addEventListener("ended", function () {
+    playlist.playNext();
+    updateUI(playlist);
+    audio.src = playlist.getCurrentSong().audioLink;
+    audio.play();
+  });
+
+  let currentVolume = 1;
+
+  volumeSlider.addEventListener("input", function () {
+    currentVolume = parseInt(volumeSlider.value, 10);
+    updateVolumeDisplay();
+    updateAudioVolume();
+  });
+
+  function updateVolumeDisplay() {
+    volumeDisplay.textContent = currentVolume;
+  }
+
+   function updateAudioVolume() {
+    const audio = document.getElementById("audio");
+    audio.volume = currentVolume / 9;
+  }
+
+  document.body.appendChild(audio);
+  audio.play();
+
+  updateUI(playlist);
+}
+
+if (!document.getElementById("musicPlayerStyles")) {
+  const style = document.createElement("style");
+  style.id = "musicPlayerStyles";
+  style.textContent = `
+  #player {
+      border: 3px solid #C9C9C9;
+      display: flex;
+      flex-direction: row;
+      height:191px;
+      background-Image: url("https://i.imgur.com/Ok791w6.png");
+    }
+
+    #display-box {
+      display: flex;
+      align-items: center;
+      width: 50%;
+    }
+
+    #cover {
+      width: 176px;
+      height:176px;
+    }
+
+    #info-container {
+      display: flex;
+      flex-direction: row;
+      height:178px;
+      width:127px;
+      margin-top: 3px;
+    }
+
+    #song-info {
+      width: 100%;
+      padding:5px;
+    }
+
+    #controls-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px;
+      width:100%;
+      padding-top:15px;
+    }
+
+    .is-vertical #volumeSlider {
+      width: 16px;
+      height: 100%;
+      writing-mode: vertical-rl;
+      direction: rtl;
+    }
+
+    #controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 80%;
+    }
+
+    #progress-bar-container {
+      width: 100%;
+    }
+
+    #progress-bar {
+      width: 80%;
+      margin: auto;
+      display: flex;
+      margin-top: 20px;
+    }
+  `;
+  document.head.appendChild(style);
+}
