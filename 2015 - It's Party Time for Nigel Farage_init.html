@@ -1,3 +1,50 @@
+RecReading=true;
+e=campaignTrail_temp
+if (!e.done) {
+e.done = true;
+
+if(document.getElementById("position-display")==null)
+{
+
+function updateCandidateForm() {
+    try {
+      const form = document.querySelector("#candidate_form form");
+      const heading = form.querySelector("h3");
+      
+      heading.textContent = "Please select your party:";
+    } catch {}
+  }
+  window.setInterval(updateCandidateForm,10)
+  function updateRunningMateForm() {
+    try {
+      const form = document.querySelector("#running_mate_form form");
+      const heading = form.querySelector("h3");
+      
+      heading.textContent = "Read more about your party:";
+    } catch {}
+  }
+  window.setInterval(updateRunningMateForm,10)
+  function removeCandidateSummary() {
+  try {
+    const candidateSummary = document.querySelector("#candidate_summary");
+    if (candidateSummary) {
+      const ulList = candidateSummary.querySelector("ul");
+      if (ulList) {
+        candidateSummary.removeChild(ulList);
+      }
+    }
+  } catch {}
+  }
+  window.setInterval(removeCandidateSummary,10)
+  
+  let z = new MutationObserver((mutationsList, observer) => {
+      let candidateSummary = document.querySelector("#candidate_summary");
+      if (candidateSummary && candidateSummary.children[0].children[2].innerHTML != candidateSummary.children[0].children[2].innerHTML.replaceAll("Home State", "Constituency")) {
+          candidateSummary.children[0].children[2].innerHTML = candidateSummary.children[0].children[2].innerHTML.replaceAll("Home State", "Constituency");
+      }
+  });
+
+
 campaignTrail_temp.election_json = [
     {
         "model": "campaign_trail.election",
@@ -64,7 +111,7 @@ campaignTrail_temp.candidate_json = [
             "state": "Doncaster North",
             "priority": 1,
             "description": "<li><b>Name: Ed Miliband</b></li><li><b>Party: Labour Party</b></li><li><b>Role: Leader of the Opposition</b></li><li><b>Constituency: Doncaster North</b></li><p>Keir Starmer is the incumbent leader of Her Majesty's Most Loyal Opposition.",
-            "color_hex": "#0000FF",
+            "color_hex": "#e2003b",
             "secondary_color_hex": null,
             "is_active": 1,
             "image_url": "https://www.jetsimon.com/public/candidateexample.png",
